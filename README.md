@@ -4,4 +4,4 @@ Library Management System is a CRUD app, in which user can create, read, update,
 
 This repository is created to fullfil project function homework by DTSense.
 
-created on Mon, 6th April 2024 © Marsetio Noorprajuda. All rights reserved.
+created on Sat, 6th April 2024 © Marsetio Noorprajuda. All rights reserved.
