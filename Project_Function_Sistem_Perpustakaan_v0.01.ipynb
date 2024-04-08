@@ -1,0 +1,190 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Project Penerapan List, Logic, dan Fungsi\n",
+    "## Membuat sistem Perpustakaan\n",
+    "### konsep CRUD (CREATE, READ, UPDATE, DELETE) sederhana tanpa Database"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Buat variabel global untuk menyimpan data Buku dengan menggunakan LIST\n",
+    "buku = [\"The Things You Can See Only When You Slow Down\", \"Can’t Hurt Me: Master Your Mind and Defy the Odds\", \"Surrounded by Idiots\", \"A PhD is not Enough\"]\n",
+    "\n",
+    "# Fungsi untuk menampilkan semua data\n",
+    "def tampilkan_buku():\n",
+    "    print(\"\\n\")\n",
+    "    print(\"----------- Daftar Buku ----------\")\n",
+    "    # Check jika jumlah value pada variable buku\n",
+    "    # Jika jumlah buku <=0 print(\"Belum Ada Data\")\n",
+    "    if len(buku) <= 0:\n",
+    "        print(\"BELUM ADA DATA\")\n",
+    "    # Jika jumlah lebih dari 0, maka kita print buku satu persatu beserta indexnya\n",
+    "    # menggunakan For loops\n",
+    "    else:\n",
+    "        for i in range(len(buku)):\n",
+    "            print(\"[\"+str(i)+\"]\", str(buku[i]))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# fungsi untuk menambah data\n",
+    "def masukkan_data_buku():\n",
+    "    # Supaya interaktif, kita buat user input dengan menggunakan fungsi input()\n",
+    "    buku_baru = input(\"Masukkan Judul Buku: \")\n",
+    "    # gunakan method .append() untuk menambah nilai baru\n",
+    "    # perlu diingat method .append() berbeda dengan konsep extending list yang menggunakan (+) *) List + List\n",
+    "    buku.append(buku_baru)\n",
+    "    print(\"Buku dengan judul: \\\"\" + buku_baru + \"\\\" telah berhasil dimasukkan\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# fungsi untuk edit data\n",
+    "def edit_data_buku():\n",
+    "    # Tampilkan data buku dengan memanggil fungsi tampilkan_buku\n",
+    "    tampilkan_buku()\n",
+    "    # Buat user input untuk memasukkan ID buku yang akan di edit\n",
+    "    index = input(\"Inputkan ID buku yang akan di edit: \")\n",
+    "    index = int(index)\n",
+    "    # Check jika ID yang dimasukkan lebih besar dari jumlah buku, maka print(\"ID Salah\")\n",
+    "    if(index + 1 > len(buku)):\n",
+    "        print(\"ID salah\")\n",
+    "    # Else, replace list element dengan judul_baru\n",
+    "    else:\n",
+    "        judul_baru = input(\"Judul baru: \")\n",
+    "        buku[index] = judul_baru\n",
+    "        print(\"Buku dengan judul baru: \\\"\" + judul_baru + \"\\\" telah berhasil diubah\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# fungsi untuk menhapus data\n",
+    "def hapus_data_buku():\n",
+    "    tampilkan_buku() #Tampilkan data buku\n",
+    "    index = input(\"Inputkan ID buku yang akan di hapus: \") #gunakan input() untuk mendapatkan ID dari user input\n",
+    "    index = int(index)\n",
+    "    # Check jika ID yang dimasukkan lebih besar dari jumlah buku, maka print(\"ID Salah\")\n",
+    "    if(index + 1 > len(buku)):\n",
+    "        print(\"ID salah\")\n",
+    "    # Else, remove data buku menggunakan method .remove(buku[index]) atau del(buku[index])\n",
+    "    else:\n",
+    "        buku.remove(buku[index])\n",
+    "        print(\"Buku dengan index: \\\"\" + str(index) + \"\\\" telah berhasil dihapus\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "\n",
+      "----------- SISTEM PERPUSTAKAAN ----------\n",
+      "[1] Tampilkan Buku\n",
+      "[2] Masukkan Data Buku\n",
+      "[3] Edit Data Buku\n",
+      "[4] Hapus Data Buku\n",
+      "[5] Exit\n"
+     ]
+    }
+   ],
+   "source": [
+    "# fungsi untuk menampilkan menu\n",
+    "def tampilkan_menu_utama():\n",
+    "    print(\"\\n\")\n",
+    "    print(\"----------- SISTEM PERPUSTAKAAN ----------\")\n",
+    "    print(\"[1] Tampilkan Buku\")\n",
+    "    print(\"[2] Masukkan Data Buku\")\n",
+    "    print(\"[3] Edit Data Buku\")\n",
+    "    print(\"[4] Hapus Data Buku\")\n",
+    "    print(\"[5] Exit\")\n",
+    "    \n",
+    "    # Buat input user menggunakan fungsi input()\n",
+    "    # kemudian, buat control flow yang bisa memanage pilihan input\n",
+    "    \n",
+    "    menu = input(\"PILIH MENU> \")\n",
+    "    print(\"\\n\")\n",
+    "\n",
+    "    if menu == \"1\":\n",
+    "        tampilkan_buku()\n",
+    "    elif menu == \"2\":\n",
+    "        masukkan_data_buku()\n",
+    "    elif menu == \"3\":\n",
+    "        edit_data_buku()\n",
+    "    elif menu == \"4\":\n",
+    "        hapus_data_buku()\n",
+    "    elif menu == \"5\":\n",
+    "        exit()\n",
+    "    else:\n",
+    "        print(\"Salah pilih!\")\n",
+    "\n",
+    "# Gunakan if __name__ == \"__main__\":, jika ingin menggunakan code yang sudah kita buat menjadi nama_file.py\n",
+    "# Sehingga bisa di eksekusi menggunakan command python\n",
+    "if __name__ == \"__main__\":  \n",
+    "\n",
+    "    while(True):\n",
+    "        tampilkan_menu_utama()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Referensi:\n",
+    "## https://www.scribd.com/document/450041719/74-Pemrograman-System-Python-pdf"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
